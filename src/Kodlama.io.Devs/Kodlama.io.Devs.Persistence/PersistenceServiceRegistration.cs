@@ -20,7 +20,8 @@ namespace Kodlama.io.Devs.Persistence
             services.AddDbContext<BaseDbContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString("KodlamaIoDevsConnectionString")));
-            services.AddScoped<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
+
+            services.AddTransient<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
 
             return services;
         }

@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\demoProjects\templateProject\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\Kodlama.io.Devs.Persistence\Kodlama.io.Devs.Persistence.csproj" />
   </ItemGroup>
 
