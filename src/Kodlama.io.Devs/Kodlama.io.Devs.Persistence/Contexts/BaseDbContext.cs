@@ -14,6 +14,7 @@ namespace Kodlama.io.Devs.Persistence.Contexts
     {
         protected IConfiguration Configuration { get; set; }
         public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
+        public DbSet<Technology> Technologies { get; set; }
 
 
         public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
@@ -35,13 +36,30 @@ namespace Kodlama.io.Devs.Persistence.Contexts
                 a.ToTable("ProgrammingLanguages").HasKey(k => k.Id);
                 a.Property(p => p.Id).HasColumnName("Id");
                 a.Property(p => p.Name).HasColumnName("Name");
+                a.HasMany(p => p.Technologies);
+            });
+
+            modelBuilder.Entity<Technology>(a =>
+            {
+                a.ToTable("Technologies").HasKey(k => k.Id);
+                a.Property(p => p.Id).HasColumnName("Id");
+                a.Property(p => p.Name).HasColumnName("Name");
+                a.Property(p => p.LanguageId).HasColumnName("LanguageId");
+                a.HasOne(p => p.Language);
             });
 
 
-
-            ProgrammingLanguage[] programmingLanguageEntitySeeds = { new(1, "C#"), new(2, "Java"),new(3, "JavaScript"),new(4,"Go")};
+            ProgrammingLanguage[] programmingLanguageEntitySeeds = { new(1, "C#"), new(2, "Java"), new(3, "JavaScript") };
             modelBuilder.Entity<ProgrammingLanguage>().HasData(programmingLanguageEntitySeeds);
 
+            Technology[] technologyEntitySeeds = {
+                new(1,1,"WPF"),
+                new(2,1, "ASP.NET"),
+                new(3,2,"Spring"),
+                new(4,2, "JSP"),
+                new(5,3, "React"),
+                new(6,3, "Vue") };
+            modelBuilder.Entity<Technology>().HasData(technologyEntitySeeds);
 
         }
     }

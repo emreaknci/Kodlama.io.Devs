@@ -22,6 +22,7 @@ namespace Kodlama.io.Devs.Persistence
                     configuration.GetConnectionString("KodlamaIoDevsConnectionString")));
 
             services.AddTransient<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
+            services.AddTransient<ITechnologyRepository, TechnologyRepository>();
 
             return services;
         }
