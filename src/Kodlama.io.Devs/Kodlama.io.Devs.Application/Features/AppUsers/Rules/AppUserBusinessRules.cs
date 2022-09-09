@@ -30,15 +30,15 @@ namespace Kodlama.io.Devs.Application.Features.AppUsers.Rules
 
         public async Task UserToCheck(string email)
         {
-            var userToCheck = await _userRepository.GetListAsync(b => b.Email == email);
-            if (!userToCheck.Items.Any()) throw new BusinessException("No records found matching this email");
+            var userToCheck = await _userRepository.GetAsync(b => b.Email == email);
+            if (userToCheck==null) throw new BusinessException("No records found matching this email");
 
         }
 
         public async Task PasswordToCheck(string email, string password)
         {
-            var user = await _userRepository.GetListAsync(b => b.Email == email);
-            if (!HashingHelper.VerifyPasswordHash(password, user.Items.FirstOrDefault()!.PasswordHash, user.Items.FirstOrDefault()!.PasswordSalt))
+            var user = await _userRepository.GetAsync(b => b.Email == email);
+            if (!HashingHelper.VerifyPasswordHash(password, user!.PasswordHash, user!.PasswordSalt))
                 throw new BusinessException("Wrong password error! Please try again.");
 
         }

@@ -24,6 +24,7 @@ namespace Kodlama.io.Devs.Persistence
             services.AddTransient<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
             services.AddTransient<ITechnologyRepository, TechnologyRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IStudentRepository, StudentRepository>();
 
             return services;
         }
