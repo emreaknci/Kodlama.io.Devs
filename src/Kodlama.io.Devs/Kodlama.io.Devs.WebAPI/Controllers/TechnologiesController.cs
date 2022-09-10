@@ -8,6 +8,7 @@ using Kodlama.io.Devs.Application.Features.Technologies.Commands.UpdateTechnolog
 using Kodlama.io.Devs.Application.Features.Technologies.Queries.GetByIdTechnology;
 using Kodlama.io.Devs.Application.Features.Technologies.Queries.GetListTechnology;
 using Kodlama.io.Devs.Application.Features.Technologies.Queries.GetListTechnologyByDynamic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,7 @@ namespace Kodlama.io.Devs.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class TechnologiesController : BaseController
     {   
         /*Read Operations*/
